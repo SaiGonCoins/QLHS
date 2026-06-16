@@ -1,0 +1,6 @@
+@QL_HS_HostAddress = http://localhost:5204
+
+GET {{QL_HS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
