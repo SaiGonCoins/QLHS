@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
+import { downloadStudentReport } from "../api/reportApi";
 import {
   PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, CartesianGrid
@@ -448,6 +449,7 @@ export default function HomePage() {
                         <td className="p-3 text-center">
                           <button onClick={() => startEdit(sv)} className="px-2.5 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors">Sửa</button>
                           <button onClick={() => handleDeleteStudent(sv.id, sv.name)} className="ml-1.5 px-2.5 py-1.5 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">Xóa</button>
+                          <button onClick={() => downloadStudentReport(sv.id, sv.name)} className="ml-1.5 px-2.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">📄 PDF</button>
                         </td>
                       </tr>
                     ))

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
+import { downloadStudentReport } from "../api/reportApi";
 
 const STUDENT_API = "/students";
 
@@ -219,17 +220,18 @@ export default function StudentManagement() {
                     </tr>
                   ) : (
                     students.map((sv, idx) => (
-                      <tr key={sv.id} className={`hover:bg-gray-50/70 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'}`}>
-                        <td className="p-3 text-gray-600">{(currentPage - 1) * 5 + idx + 1}</td>
-                        <td className="p-3 font-semibold text-gray-800">{sv.name || "—"}</td>
-                        <td className="p-3 text-gray-600">{sv.age || "—"}</td>
-                        <td className="p-3 text-blue-600 font-medium">{sv.class?.className || classes.find(c => c.id === sv.classId)?.className || "Chưa xếp lớp"}</td>
-                        <td className="p-3 font-medium text-emerald-600">{sv.averageScore ?? "—"}</td>
-                        <td className="p-3 text-center">
-                          <button onClick={() => handleOpenModal(sv)} className="px-2.5 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors">Sửa</button>
-                          <button onClick={() => handleDelete(sv.id, sv.name)} className="ml-1.5 px-2.5 py-1.5 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">Xóa</button>
-                        </td>
-                      </tr>
+<tr key={sv.id} className={`hover:bg-gray-50/70 transition-colors ${idx % 2 === 0 ? 'bg-white' : 'bg-gray-50/30'}`}>
+                          <td className="p-3 text-gray-600">{(currentPage - 1) * 5 + idx + 1}</td>
+                          <td className="p-3 font-semibold text-gray-800">{sv.name || "—"}</td>
+                          <td className="p-3 text-gray-600">{sv.age || "—"}</td>
+                          <td className="p-3 text-blue-600 font-medium">{sv.class?.className || classes.find(c => c.id === sv.classId)?.className || "Chưa xếp lớp"}</td>
+                          <td className="p-3 font-medium text-emerald-600">{sv.averageScore ?? "—"}</td>
+                          <td className="p-3 text-center">
+                            <button onClick={() => handleOpenModal(sv)} className="px-2.5 py-1.5 text-xs font-semibold text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors">Sửa</button>
+                            <button onClick={() => handleDelete(sv.id, sv.name)} className="ml-1.5 px-2.5 py-1.5 text-xs font-semibold text-red-700 bg-red-50 hover:bg-red-100 rounded-lg transition-colors">Xóa</button>
+                            <button onClick={() => downloadStudentReport(sv.id, sv.name)} className="ml-1.5 px-2.5 py-1.5 text-xs font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors">📄 PDF</button>
+                          </td>
+                        </tr>
                     ))
                   )}
                 </tbody>
