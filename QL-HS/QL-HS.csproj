@@ -10,6 +10,8 @@
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageReference Include="Carter" Version="10.0.0" />
+    <PackageReference Include="DevExpress.AspNetCore.Reporting" Version="25.2.8" />
+    <PackageReference Include="DevExpress.Document.Processor" Version="25.2.8" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="Mapster" Version="10.0.7" />
     <PackageReference Include="MediatR" Version="14.1.0" />
@@ -20,7 +22,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="MiniExcel" Version="1.44.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.1" />
   </ItemGroup>

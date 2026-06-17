@@ -122,7 +122,12 @@ public class StudentModule : ICarterModule
                 return Results.BadRequest("Vui lòng chọn một file Excel hợp lệ!");
 
             // Lấy đuôi file dạng string (Ví dụ: ".xlsx", ".xls")
-            var extension = Path.GetExtension(file.FileName).ToLower();
+            var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (extension is not ".xlsx" and not ".xls" and not ".csv")
+            {
+                return Results.BadRequest("Chỉ hỗ trợ file .xlsx, .xls, .csv!");
+            }
 
             using var stream = file.OpenReadStream();
 
