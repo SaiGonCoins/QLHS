@@ -162,7 +162,7 @@ export default function HomePage() {
         }
       }
       const ngayXuat = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-      const tenFileHoanChinh = `Danh_Sach_Sinh_Vien_${tenLopHienTai}_${ngayXuat}.xlsx`;
+      const tenFileHoanChinh = `Danh_Sach_Sinh_Vien_${tenLopHienTai}_${ngayXuat}.csv`;
       const response = await axiosInstance.get(`${STUDENT_API}/export`, {
         params: {
           classId: filterClassId === "" ? undefined : filterClassId

@@ -83,7 +83,7 @@ public class StudentModule : ICarterModule
 
         
 
-        // 6. [GET] /api/students/export - Xuất file Excel kèm tên lớp động
+        // 6. [GET] /api/students/export - Xuất file CSV kèm tên lớp động
         group.MapGet("/export", async (Guid? classId, ISender mediator, QL_HS.Data.AppDbContext context, IHttpContextAccessor httpContextAccessor) =>
         {
             // 1. Xác định tên lớp dựa vào bộ lọc classId
@@ -98,11 +98,11 @@ public class StudentModule : ICarterModule
                 }
             }
 
-            // 2. Lấy mảng byte dữ liệu Excel từ Mediator
-            var fileBytes = await mediator.Send(new ExportStudentsQuery(classId));
+            // 2. Lấy mảng byte dữ liệu CSV từ Mediator
+            var fileBytes = await mediator.Send(new ExportStudentsCsvQuery(classId));
 
             // 3. Tạo tên file hoàn chỉnh kèm ngày tháng năm
-            string fileName = $"Danh_Sach_Sinh_Vien_{tenLopFile}_{DateTime.Now:yyyyMMdd}.xlsx";
+            string fileName = $"Danh_Sach_Sinh_Vien_{tenLopFile}_{DateTime.Now:yyyyMMdd}.csv";
 
             // 4. Bổ sung Header báo cho trình duyệt biết tên file chính xác
             var httpContext = httpContextAccessor.HttpContext;
@@ -110,7 +110,7 @@ public class StudentModule : ICarterModule
 
             return Results.File(
                 fileBytes,
-                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "text/csv; charset=utf-8",
                 fileName
             );
         });
